@@ -1,0 +1,9 @@
+1) jest - TESTTING library. naming file - filename.test.js
+    Do not forget to include 
+
+    "scripts": {
+    "test": "jest"
+    },
+
+    on your package.json
+
