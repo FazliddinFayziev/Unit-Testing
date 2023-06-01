@@ -1,4 +1,5 @@
 const lib = require("../lib");
+const db = require('../db');
 
 // You can use it() or test(). It does not matter
 
@@ -67,5 +68,23 @@ describe('resgisterUser', () => {
 })
 
 describe('applyDiscount', () => {
+    test('should apply 10% descount if customer has more than 10 points', () => {
 
+        db.getCustomerSync = function (customerId) {
+            console.log('Faka reading customer...');
+            return { id: customerId, points: 20 };
+        }
+
+        const order = { cusmerId: 1, totalPrice: 10 };
+        lib.applyDiscount(order);
+        expect(order.totalPrice).toBe(9)
+    });
+});
+
+describe('notifyCustomer', () => {
+    it('should send an email to the customer', () => {
+        db.getCustomerSync = function (customerId) {
+            return { email: 'a' };
+        }
+    })
 })
